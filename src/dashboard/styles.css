@@ -1,0 +1,54 @@
+.icon_button{
+    margin-left: auto;
+}
+
+.user_avatar-container{
+    display: flex;
+    margin-left: auto;
+}
+.notification_span{
+    background: #FFD74F;
+    width: 9.6px;
+    height: 9.6px;
+    border-radius: 50px;
+    position: absolute;
+    margin-right: 10px;
+    margin-top: 10px;
+    right: 0;
+    top: 0;
+}
+
+.btn_teacher-mode-container{
+    margin-left: auto;
+    flex-grow: 0;
+}
+.btn_teacher-mode{
+    width: 186px;
+    height: 34px;
+    left: 1037px;
+    top: 15px;
+    background: #5F41CF;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+    border: none;
+    margin-right: 23px;
+    margin-left: auto;
+}
+
+/* Responsive All */
+@media only screen and (max-width: 800px) {
+    #toolbar{
+        width: 90%;
+    }
+    #my_classes{
+        display: none;
+    }
+    #detail_nav{
+        display: none;
+    }
+    #logo_container{
+        flex-grow: 1;
+    }
+  }
+
