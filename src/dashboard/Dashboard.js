@@ -1,4 +1,4 @@
-import React , {useEffect} from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,8 +8,11 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import logo from '../assets/id_visual/logo.svg';
 import detailNav from '../assets/id_visual/detail_nav.svg';
+import detailHeader from '../assets/id_visual/detail_header.svg';
+import imageHeader from '../assets/images/image_header.svg';
 import imageUser from '../assets/images/user_image_1.png';
 
 
@@ -62,27 +65,39 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "11px",
         fontWeight: "500"
     },
+    toolbar: {
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+    },
+    header:{
+        background: "#ffffff",
+        width: "100%",
+        margin: "35px 0",
+        padding: "20px 55px",
+        display: "flex"
+    }
 
   }));
 
-const Dashboard = () => {
+const Dashboard = ({status}) => {
     const classes = useStyles();
+    const [ico, setIco] = useState(status);
         
     /* When the user clicks on the button, 
     toggle between hiding and showing the dropdown content */
-    function myFunction() {
+    function openMenu() {
         document.getElementById("myDropdown").classList.toggle("show");
-    }      
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(e) {
-        if (!e.target.matches('.dropbtn')) {
-            var myDropdown = document.getElementById("myDropdown");
-            if (myDropdown.classList.contains('show')) {
-                myDropdown.classList.remove('show');
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(e) {
+            if (!e.target.matches('.dropbtn')) {
+                let myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');                    
+                }
             }
         }
-    }
-
+    }      
+    
     return (
         <div>
             <div className={classes.root}>
@@ -105,8 +120,8 @@ const Dashboard = () => {
                                 </button>
                             </Link>
                             <div className="dropdown">
-                                <IconButton edge="end" onClick={() => myFunction()} className="dropbtn">
-                                    <ExpandMoreIcon/>
+                                <IconButton edge="end" onClick={() => setIco(ico), () => openMenu()} className="dropbtn">
+                                    {!ico ? <ExpandMoreIcon/> : <ExpandLessIcon/>}
                                 </IconButton>
                             </div>                   
                         </div>
@@ -125,6 +140,20 @@ const Dashboard = () => {
                         </IconButton>
                     </Toolbar>
                 </AppBar>
+                <div id="content_header" className={classes.container}>
+                    <div id="header" className={classes.header}>
+                        <img className="detail_header" src={detailHeader} alt="detail_header"/>
+                        <div className="container_header">
+                            <h3 className="title_header">Hello <strong>Student<span>.</span></strong></h3>
+                            <p className="text_header">
+                                Whether you are a student trying to find your ideal private language teachers/tutors
+                            </p>
+                        </div>
+                        <div className="container_img-header">
+                            <img className="image_header" src={imageHeader} alt="image_header"/>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

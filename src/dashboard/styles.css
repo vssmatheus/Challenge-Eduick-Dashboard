@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700;900&display=swap');
+
 body{
     max-width: 100%;
     position: relative;
@@ -5,6 +7,7 @@ body{
     margin: 0;
     box-sizing: border-box;
     overflow: hidden;
+    background: #E5E5E5;
 }
 .icon_button{
     margin-left: auto;
@@ -76,7 +79,7 @@ body{
 }
 
 #myDropdown{
-    background-color:rgba(230, 230, 230, 0.459);
+    background-color:rgba(236, 236, 236, 0.747);
     overflow:hidden;
     position: fixed;
     top: 58px;
@@ -115,7 +118,63 @@ body{
     align-items: center;
     left: 0;
 }
+.hidden{
+    display: none;
+}
 
+.container_header{
+    flex-grow: 1;
+    width: 100%;
+    padding-left: 40px;
+}
+
+.title_header{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 34px;
+    /* or 34px */
+    color: #200E64;
+}
+.title_header  span{
+    color: #FFD74F;
+    font-size: larger;
+
+}
+.text_header{
+    width: 85%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 160%;
+    margin-top: 15px;
+    /* or 22px */
+    color: #343434;
+}
+
+.container_img-header{
+    flex-grow: 2;
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image_header{
+    width: 85%;
+    background-size: cover;
+}
+.detail_header{
+    position: absolute;
+    max-height: min-content;
+    left: 0;
+    top: 25%;
+    bottom: 25%;
+    margin-left: -50px;
+}
+#content_header{
+    z-index: -2;
+}
 /* Responsive All */
 @media only screen and (max-width: 800px) {
     #toolbar{
@@ -130,11 +189,27 @@ body{
     #logo_container{
         flex-grow: 1;
     }
+    #header{
+        padding: 40px 20px;
+    }
     .button_for-desktop {
         display: none;
     }
     .dropdown {
         display: inline-block;
       }
+      .container_img-header{
+          display: none;
+      }
+      .container_header{
+        padding: 0;
+    }
+      .detail_header{
+        position: absolute;
+        max-height: 100px;
+        right: 5%;
+        left: auto;
+        top: 8px;
+    }
   }
 
