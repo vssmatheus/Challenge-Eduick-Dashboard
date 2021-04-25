@@ -9,10 +9,12 @@ import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import StarIcon from '@material-ui/icons/Star';
 import logo from '../assets/id_visual/logo.svg';
 import detailNav from '../assets/id_visual/detail_nav.svg';
 import detailHeader from '../assets/id_visual/detail_header.svg';
 import imageHeader from '../assets/images/image_header.svg';
+import imageCourse from '../assets/images/image_course.png';
 import imageUser from '../assets/images/user_image_1.png';
 
 
@@ -71,11 +73,14 @@ const useStyles = makeStyles((theme) => ({
     },
     header:{
         background: "#ffffff",
-        width: "100%",
+        minWidth: "100%",
         margin: "35px 0",
         padding: "20px 55px",
         display: "flex"
-    }
+    },
+    star:{
+        color: "#FFC908"
+    },
 
   }));
 
@@ -140,7 +145,8 @@ const Dashboard = ({status}) => {
                         </IconButton>
                     </Toolbar>
                 </AppBar>
-                <div id="content_header" className={classes.container}>
+                <div id="content_all" className={classes.container}>
+                    {/* header */}
                     <div id="header" className={classes.header}>
                         <img className="detail_header" src={detailHeader} alt="detail_header"/>
                         <div className="container_header">
@@ -153,7 +159,134 @@ const Dashboard = ({status}) => {
                             <img className="image_header" src={imageHeader} alt="image_header"/>
                         </div>
                     </div>
+                    {/* content GET API */}
+                    <div id="courses" className="courses">
+                        {/* CARD COURSE */}
+                        <div className="card_course">
+                            <img className="image_course" src={imageCourse} alt="image_course"/>
+                            <div className="info_course">
+                                <div className="avaliation">
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star"/>
+                                    <StarIcon className="star"/>
+                                </div>
+                                <div className="lessons_quantity">
+                                    <Link to="/">10 LESSONS</Link>
+                                </div>
+                            </div>
+                            <div className="descritio_couser">
+                                <h4>
+                                    Master English: Improve Your Speaking
+                                </h4>
+                            </div>
+                        </div>
+                        {/* <div className="card_course">
+                            <img className="image_course" src={imageCourse} alt="image_course"/>
+                            <div className="info_course">
+                                <div className="avaliation">
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star"/>
+                                    <StarIcon className="star"/>
+                                </div>
+                                <div className="lessons_quantity">
+                                    <Link to="/">10 LESSONS</Link>
+                                </div>
+                            </div>
+                            <div className="descritio_couser">
+                                <h4>
+                                    Master English: Improve Your Speaking
+                                </h4>
+                            </div>
+                        </div>
+                        <div className="card_course">
+                            <img className="image_course" src={imageCourse} alt="image_course"/>
+                            <div className="info_course">
+                                <div className="avaliation">
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star"/>
+                                    <StarIcon className="star"/>
+                                </div>
+                                <div className="lessons_quantity">
+                                    <Link to="/">10 LESSONS</Link>
+                                </div>
+                            </div>
+                            <div className="descritio_couser">
+                                <h4>
+                                    Master English: Improve Your Speaking
+                                </h4>
+                            </div>
+                        </div>
+                        <div className="card_course">
+                            <img className="image_course" src={imageCourse} alt="image_course"/>
+                            <div className="info_course">
+                                <div className="avaliation">
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star"/>
+                                    <StarIcon className="star"/>
+                                </div>
+                                <div className="lessons_quantity">
+                                    <Link to="/">10 LESSONS</Link>
+                                </div>
+                            </div>
+                            <div className="descritio_couser">
+                                <h4>
+                                    Master English: Improve Your Speaking
+                                </h4>
+                            </div>
+                        </div>
+                        <div className="card_course">
+                            <img className="image_course" src={imageCourse} alt="image_course"/>
+                            <div className="info_course">
+                                <div className="avaliation">
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star"/>
+                                    <StarIcon className="star"/>
+                                </div>
+                                <div className="lessons_quantity">
+                                    <Link to="/">10 LESSONS</Link>
+                                </div>
+                            </div>
+                            <div className="descritio_couser">
+                                <h4>
+                                    Master English: Improve Your Speaking
+                                </h4>
+                            </div>
+                        </div>
+                        <div className="card_course">
+                            <img className="image_course" src={imageCourse} alt="image_course"/>
+                            <div className="info_course">
+                                <div className="avaliation">
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star star_checked"/>
+                                    <StarIcon className="star"/>
+                                    <StarIcon className="star"/>
+                                </div>
+                                <div className="lessons_quantity">
+                                    <Link to="/">10 LESSONS</Link>
+                                </div>
+                            </div>
+                            <div className="descritio_couser">
+                                <h4>
+                                    Master English: Improve Your Speaking
+                                </h4>
+                            </div>
+                        </div> */}
+                    </div>
                 </div>
+                <footer className="footer">
+                    <h4>Copyright © 2020 <strong>Eduick</strong>. Todos os direitos reservados.</h4>
+                </footer>
             </div>
         </div>
     )
