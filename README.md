@@ -5,6 +5,12 @@
  
  - npm install
  - npm start
+
+## Start da API em JSON.
+
+ - Abra a pasta /API
+ - npm install -g json-server
+ - json-server courses.json --port 3001
  
 ## Layout da Dashboard
  
