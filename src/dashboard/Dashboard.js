@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,7 +16,7 @@ import detailHeader from '../assets/id_visual/detail_header.svg';
 import imageHeader from '../assets/images/image_header.svg';
 import imageCourse from '../assets/images/image_course.png';
 import imageUser from '../assets/images/user_image_1.png';
-
+import api from '../services/api';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -87,7 +87,16 @@ const useStyles = makeStyles((theme) => ({
 const Dashboard = ({status}) => {
     const classes = useStyles();
     const [ico, setIco] = useState(status);
-        
+    const [courses, setCourses] = useState([]);
+   
+    useEffect(()=> {
+        /* CONSUMO DA API */
+        api.get('courses').then(response => {
+            setCourses(response.data);
+            console.log(courses);
+        })        
+    }, []); 
+
     /* When the user clicks on the button, 
     toggle between hiding and showing the dropdown content */
     function openMenu() {
@@ -128,7 +137,7 @@ const Dashboard = ({status}) => {
                                 <IconButton edge="end" onClick={() => setIco(ico), () => openMenu()} className="dropbtn">
                                     {!ico ? <ExpandMoreIcon/> : <ExpandLessIcon/>}
                                 </IconButton>
-                            </div>                   
+                            </div>               
                         </div>
                         <div id="myDropdown" className="dropdown-content">
                             <Link to="/" className="menu_teacher-mode NonOpaque">
@@ -162,126 +171,51 @@ const Dashboard = ({status}) => {
                     {/* content GET API */}
                     <div id="courses" className="courses">
                         {/* CARD COURSE */}
-                        <div className="card_course">
-                            <img className="image_course" src={imageCourse} alt="image_course"/>
-                            <div className="info_course">
-                                <div className="avaliation">
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star"/>
-                                    <StarIcon className="star"/>
+                        {courses.length === 0 ? (
+                            <div className="loading_couurses"><h4>Loading Courses...</h4></div>
+                        ) : courses.map(item => (
+                            <div className="card_course" key={item.id}>
+                                <img className="image_course" src={imageCourse} alt="image_course"/>
+                                <div className="info_course">
+                                    <div className="avaliation">
+                                        <StarIcon className="star star_checked"/>
+                                        <StarIcon className="star star_checked"/>
+                                        <StarIcon className="star star_checked"/>
+                                        <StarIcon className="star"/>
+                                        <StarIcon className="star"/>
+                                    </div>
+                                    <div className="lessons_quantity">
+                                        <Link to="/">{item.quantity_lessons} LESSONS</Link>
+                                    </div>
                                 </div>
-                                <div className="lessons_quantity">
-                                    <Link to="/">10 LESSONS</Link>
+                                <div className="descritio_couser">
+                                    <h4>
+                                        {item.title_course}
+                                    </h4>
                                 </div>
                             </div>
-                            <div className="descritio_couser">
-                                <h4>
-                                    Master English: Improve Your Speaking
-                                </h4>
-                            </div>
-                        </div>
+                        ))}
+                        {/* componnte CARD COURSE replicar para testes */}
                         {/* <div className="card_course">
-                            <img className="image_course" src={imageCourse} alt="image_course"/>
-                            <div className="info_course">
-                                <div className="avaliation">
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star"/>
-                                    <StarIcon className="star"/>
+                                <img className="image_course" src={imageCourse} alt="image_course"/>
+                                <div className="info_course">
+                                    <div className="avaliation">
+                                        <StarIcon className="star star_checked"/>
+                                        <StarIcon className="star star_checked"/>
+                                        <StarIcon className="star star_checked"/>
+                                        <StarIcon className="star"/>
+                                        <StarIcon className="star"/>
+                                    </div>
+                                    <div className="lessons_quantity">
+                                        <Link to="/">10 LESSONS</Link>
+                                    </div>
                                 </div>
-                                <div className="lessons_quantity">
-                                    <Link to="/">10 LESSONS</Link>
+                                <div className="descritio_couser">
+                                    <h4>
+                                        Master English: Improve Your Speaking
+                                    </h4>
                                 </div>
-                            </div>
-                            <div className="descritio_couser">
-                                <h4>
-                                    Master English: Improve Your Speaking
-                                </h4>
-                            </div>
-                        </div>
-                        <div className="card_course">
-                            <img className="image_course" src={imageCourse} alt="image_course"/>
-                            <div className="info_course">
-                                <div className="avaliation">
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star"/>
-                                    <StarIcon className="star"/>
-                                </div>
-                                <div className="lessons_quantity">
-                                    <Link to="/">10 LESSONS</Link>
-                                </div>
-                            </div>
-                            <div className="descritio_couser">
-                                <h4>
-                                    Master English: Improve Your Speaking
-                                </h4>
-                            </div>
-                        </div>
-                        <div className="card_course">
-                            <img className="image_course" src={imageCourse} alt="image_course"/>
-                            <div className="info_course">
-                                <div className="avaliation">
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star"/>
-                                    <StarIcon className="star"/>
-                                </div>
-                                <div className="lessons_quantity">
-                                    <Link to="/">10 LESSONS</Link>
-                                </div>
-                            </div>
-                            <div className="descritio_couser">
-                                <h4>
-                                    Master English: Improve Your Speaking
-                                </h4>
-                            </div>
-                        </div>
-                        <div className="card_course">
-                            <img className="image_course" src={imageCourse} alt="image_course"/>
-                            <div className="info_course">
-                                <div className="avaliation">
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star"/>
-                                    <StarIcon className="star"/>
-                                </div>
-                                <div className="lessons_quantity">
-                                    <Link to="/">10 LESSONS</Link>
-                                </div>
-                            </div>
-                            <div className="descritio_couser">
-                                <h4>
-                                    Master English: Improve Your Speaking
-                                </h4>
-                            </div>
-                        </div>
-                        <div className="card_course">
-                            <img className="image_course" src={imageCourse} alt="image_course"/>
-                            <div className="info_course">
-                                <div className="avaliation">
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star star_checked"/>
-                                    <StarIcon className="star"/>
-                                    <StarIcon className="star"/>
-                                </div>
-                                <div className="lessons_quantity">
-                                    <Link to="/">10 LESSONS</Link>
-                                </div>
-                            </div>
-                            <div className="descritio_couser">
-                                <h4>
-                                    Master English: Improve Your Speaking
-                                </h4>
-                            </div>
-                        </div> */}
+                            </div> */}
                     </div>
                 </div>
                 <footer className="footer">
